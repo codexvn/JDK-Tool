@@ -1,7 +1,5 @@
 package top.codexvn.utils;
 
-import top.codexvn.po.UrlInfo;
-
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +9,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class GetUrlInfo {
-
     public static int getFileLength(URL url) {
         try {
             URI uri = url.toURI();

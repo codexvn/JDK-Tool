@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -6,14 +7,16 @@ import org.junit.jupiter.api.Test;
 import top.codexvn.po.JDK;
 import top.codexvn.po.ResourceList;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.function.Consumer;
 
 public class GetResourceList {
     @Test
-    void name() throws IOException {
+    ResourceList getResourceList() throws IOException {
         ResourceList resourceList = new ResourceList();
         Document doc = Jsoup.connect("https://www.injdk.cn/").get();
         Element elementsByClass = doc.getElementsByClass("tab-content").first();
@@ -29,11 +32,11 @@ public class GetResourceList {
                     String version = element.selectFirst("span").text();
                     Elements fileList = element.select("a");
                     for (var j : fileList) {
-                        String fileName = j.text();
-                        if (fileName.indexOf("win") != -1)
                             try {
                                 URL url = new URL(j.attr("href"));
-                                resourceList.addJDK(name, version, new JDK(name, version, fileName, url));
+                                String fileName = Paths.get(url.getPath()).getFileName().toString();
+                                if(fileName.endsWith(".zip") && fileName.indexOf("win")!=-1 && fileName.indexOf("x64")!=-1)
+                                    resourceList.addJDK(name, version, new JDK(name, version, fileName, url));
                             } catch (MalformedURLException e) {
                                 e.printStackTrace();
                             }
@@ -42,6 +45,20 @@ public class GetResourceList {
             });
 
         }
-        System.out.println(resourceList.toString());
+        return resourceList;
+    }
+    @Test
+    void listTOJson() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        FileWriter fileWriter = new FileWriter(new File("d:/2.json"));
+        ResourceList resourceList = getResourceList();
+        fileWriter.write(mapper.writeValueAsString(resourceList));
+        fileWriter.close();
+    }
+@Test
+    void jsonToList() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ResourceList resourceList = mapper.readValue(new File("d:/2.json"),ResourceList.class);
+    System.out.println(2121);
     }
 }

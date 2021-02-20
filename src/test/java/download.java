@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.nio.file.Paths;
 
 public class download {
     volatile int i=0;
@@ -34,5 +35,7 @@ public class download {
     void test() throws MalformedURLException, URISyntaxException {
         URL url = new URL("https://d6.injdk.cn/openjdk/openjdk/14/openjdk-14.0.2_windows-x64_bin.zip");
         System.out.println(url.toURI().getScheme());
+        System.out.println();
+
     }
 }

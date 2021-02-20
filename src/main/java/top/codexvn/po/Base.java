@@ -1,5 +1,8 @@
 package top.codexvn.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import top.codexvn.utils.GetUrlInfo;
+
 import java.io.InputStream;
 import java.net.URL;
 
@@ -7,10 +10,14 @@ public abstract class Base {
     protected String name;
     protected String version;
     protected String fileName;
-    protected UrlInfo urlInfo;
+    protected URL url;
 
-    public Base(URL url) {
-        this.urlInfo = new UrlInfo(url);
+    public String getName() {
+        return name;
+    }
+
+    public URL getUrl() {
+        return url;
     }
 
     public String getVersion() {
@@ -21,24 +28,14 @@ public abstract class Base {
         return fileName;
     }
 
-    public String getType() {
-        return version;
-    }
 
-
-    public String getName() {
-        return name;
-    }
-
-    public UrlInfo getUrlInfo() {
-        return urlInfo;
-    }
-
+    @JsonIgnore
     public int getFileLength() {
-        return urlInfo.getLength();
+         return GetUrlInfo.getFileLength(url);
     }
 
+    @JsonIgnore
     public InputStream getInputStream() {
-        return urlInfo.getInputStream();
+        return GetUrlInfo.getFileStream(url);
     }
 }
