@@ -12,6 +12,7 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.concurrent.Callable;
@@ -22,7 +23,7 @@ import java.util.concurrent.atomic.LongAdder;
 
 public class download {
 
-    volatile int longAdder;
+     int longAdder;
 
     @Test
     synchronized public void add(int i) {
@@ -31,12 +32,12 @@ public class download {
 
     @Test
     synchronized public String print(int fileLength) {
-        return String.format("%f%%",((double) longAdder)*100/fileLength);
+        return String.format("%.2f%%", ((double) longAdder * 100 )/ fileLength);
     }
 
 
     void getStream() throws IOException {
-        int i =0;
+        int i = 0;
         URL url = new URL("https://d6.injdk.cn/openjdk/openjdk/14/openjdk-14.0.2_windows-x64_bin.zip");
         HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
         try (DataInputStream dataInputStream = new DataInputStream(httpsURLConnection.getInputStream());
@@ -60,7 +61,7 @@ public class download {
 
     @Test
     void MultiThreadDownload() throws IOException, InterruptedException {
-        URL url = new URL("https://mirrors.huaweicloud.com/gradle/gradle-1.0-milestone-2a-all.zip");
+        URL url = new URL("https://d6.injdk.cn/openjdk/openjdk/16/openjdk-16-ea+12_windows-x64_bin.zip");
         HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
         InputStream inputStream = httpsURLConnection.getInputStream();
         File file = new File("d:/123.zip");
@@ -69,19 +70,33 @@ public class download {
         randomAccessFile.setLength(fileLength);
         randomAccessFile.close();
         ExecutorService executorService = Executors.newCachedThreadPool();
-        int slip = fileLength/999;
+        int slip = fileLength/2;
         int j;
-        for (j = 0; j < fileLength; j += slip) {
-            executorService.submit(new DownloadRunnable(j, j + slip-1, file, url));
-        }
-        executorService.submit(new DownloadRunnable(j-slip, fileLength, file, url));
+        for (j = 0; j + slip < fileLength; j += slip)
+            executorService.submit(new DownloadRunnable(j, j + slip - 1, file, url));
+        executorService.submit(new DownloadRunnable(j, fileLength, file, url));
         executorService.shutdown();
-        for (int i = 0; executorService.isTerminated() == false ; i++) {
-            System.out.println(i+ "S :"+print(fileLength));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                    int a=longAdder;
+                    Thread.sleep(1000);
+                    int b=longAdder;
+                    System.out.println(String.format("%.2fMb", (double) (b - a) / 1024 / 1024));
+                } }catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        int i = 0;
+        for ( i = 0; executorService.isTerminated() == false; i++) {
+            System.out.println(i + "S :" + print(fileLength));
             Thread.sleep(1000);
         }
+        System.out.println(i + "S :" + print(fileLength));
     }
-
     class DownloadRunnable implements Runnable {
         private int start, end;
         private File file;
@@ -93,37 +108,32 @@ public class download {
             this.file = file;
             this.url = url;
         }
-
         @Override
         public void run() {
-                int count=0;
-            try (FileChannel channel = new RandomAccessFile(file, "rw").getChannel();
+            try (FileChannel fileChannel = new RandomAccessFile(file, "rw").getChannel()
             ) {
-                channel.position(start);
+                ByteBuffer byteBuffer = ByteBuffer.allocate(end-start+1);
+                fileChannel.position(start);
                 HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
-                httpsURLConnection.setRequestProperty("Range","bytes="+ start + "-" + end);
-                System.out.println(start +"|"+end);
+                httpsURLConnection.setRequestProperty("Range", "bytes=" + start + "-" + end);
                 InputStream inputStream = httpsURLConnection.getInputStream();
-                int hadRead=0;
-                ByteBuffer byteBuffer =ByteBuffer.allocate(16*1024);
-                byte[] buffers = new byte[16*1024];
-                while (hadRead != -1){
+                int hadRead = 0;
+                byte[] buffers = new byte[16 * 1024];
+                while (true) {
                     hadRead = inputStream.read(buffers);
-                    byteBuffer.put(buffers,0,hadRead);
+                    if (hadRead == -1) break;
+                    byteBuffer.put(buffers, 0, hadRead);
                     if(byteBuffer.remaining()<buffers.length){
                         byteBuffer.flip();
-                        channel.write(byteBuffer);
+                        fileChannel.write(byteBuffer);
                         byteBuffer.clear();
                     }
-                    count+=hadRead;
                     add(hadRead);
                 }
-                System.out.println("ID:"+Thread.currentThread().getId());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println(start +"|"+end);
             }
         }
     }
