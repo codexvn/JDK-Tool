@@ -2,13 +2,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.annotation.processing.Generated;
+import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.*;
@@ -88,7 +86,7 @@ public class object {
         ServerSocket serverSocket = new ServerSocket(12800);
         while (true) {
             Socket socket = serverSocket.accept();
-            new Thread(new Runnable() {
+            Thread thread=  new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try (
@@ -104,8 +102,9 @@ public class object {
                         e.printStackTrace();
                     }
                 }
-            }).start();
-        }
+            });
+            thread.setDaemon(true);
+        thread.start();}
     }
 
     @Test
@@ -114,7 +113,9 @@ public class object {
        Scanner scanner = new Scanner(socketChannel);
        while (scanner.hasNextLine())
            System.out.println(scanner.next());
-
+        ServerSocketChannel serverSocketChannel =ServerSocketChannel.open();
+        serverSocketChannel.bind(new InetSocketAddress("localhost", 12800));
+        serverSocketChannel.accept();
     }
 
     @Test
