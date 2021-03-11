@@ -1,15 +1,24 @@
 package top.codexvn.po;
 
 import lombok.Data;
+import top.codexvn.po.JDKs.*;
 
 import java.net.URL;
 
 
 public class JdkFactory {
-    public JDK builder(Original original){
-            return null;
+    public static JDK builder(Original original){
+        switch (original.getName()){
+            case "oracle-jdk": return new OracleJDK(original);
+            case "SapMachine": return new SapMachine(original);
+            case "RedHat-JDK": return new RedHatOpenJDK(original);
+            case "Zulu-JDK": return new Zulu(original);
+            case "adopt-JDK": return new AdoptOpenJDK(original);
+            case "Amazon-JDK": return new Corretto(original);
+            case "OpenJDK": return new OpenJDK(original);
+            default: return null;
+        }
     }
-    // TODO: 2021/3/11 0011  实现JDK工厂方法
 }
 
 

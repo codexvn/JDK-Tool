@@ -3,7 +3,13 @@ package top.codexvn.po;
 import java.net.URL;
 
 public abstract class JDK {
+
+    public static enum ARCHITECTURE{
+            X86,X64
+        }
+
     protected Original original;
+    private ARCHITECTURE architecture=ARCHITECTURE.X64;
 
     public JDK(Original original) {
         this.original = original;
@@ -27,6 +33,13 @@ public abstract class JDK {
 
     abstract public String getFileName();
 
+    public ARCHITECTURE getArchitecture() {
+        return architecture;
+    }
+
+    public void setArchitecture(ARCHITECTURE architecture) {
+        this.architecture = architecture;
+    }
 
     @Override
     public String toString() {
