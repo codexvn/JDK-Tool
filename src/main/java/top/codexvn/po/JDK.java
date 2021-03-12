@@ -1,15 +1,38 @@
 package top.codexvn.po;
-
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public abstract class JDK {
-
-    public static enum ARCHITECTURE{
-            X86,X64
+public abstract class JDK implements Comparable<JDK> {
+    Logger logger = Logger.getLogger(this.getClassName());
+     {
+        logger.setLevel(Level.OFF);
+    }
+    @Override
+    public int compareTo(JDK o) {
+        if (getClassName().equals(o.getClassName()) == false){
+            logger.warning(getClassName()+':'+o.getClassName()+':'+getClassName().compareTo(o.getClassName()));
+            return getClassName().compareTo(o.getClassName());
         }
+        else if (getVersion().equals(o.getVersion()) == false){
+            logger.warning(getVersion()+':'+o.getVersion()+':'+getVersion().compareTo(o.getVersion()));
+            return getVersion().compareTo(o.getVersion());
+        }
+        else{
+            logger.warning(getArchitecture().toString()+':'+o.getArchitecture().toString()+':'+getArchitecture().compareTo(o.getArchitecture()));
+            return getArchitecture().compareTo(o.getArchitecture());
+        }
+    }
+
+    public static enum ARCHITECTURE {
+        X86, X64
+    }
 
     protected Original original;
-    private ARCHITECTURE architecture=ARCHITECTURE.X64;
+    private ARCHITECTURE architecture = ARCHITECTURE.X64;
+    private final Pattern pattern = Pattern.compile("\\bJDK\\d+\\w*(?<!\\()");
 
     public JDK(Original original) {
         this.original = original;
@@ -20,7 +43,12 @@ public abstract class JDK {
     }
 
     public String getVersion() {
-        return original.getVersion();
+        Matcher matcher = pattern.matcher(original.getVersion());
+
+        if(matcher.find())
+            return matcher.group();
+        else
+            return "";
     }
 
     public String getClassName() {

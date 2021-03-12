@@ -16,7 +16,9 @@ public class JdkFactory {
             case "adopt-JDK": return new AdoptOpenJDK(original);
             case "Amazon-JDK": return new Corretto(original);
             case "OpenJDK": return new OpenJDK(original);
-            default: return null;
+            case "Liberica-JDK": return new Liberica(original);
+            default:
+                System.out.println(original.getName()); return null;
         }
     }
 }

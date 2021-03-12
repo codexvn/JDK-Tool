@@ -1,0 +1,370 @@
+{
+  "jdkList": {
+    "Liberica": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "Liberica-bellsoft-jdk11.0.9.1+1-windows-i586.zip",
+          "className": "Liberica",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/liberica/11/standard/bellsoft-jdk11.0.9.1+1-windows-i586.zip",
+          "originalFileName": "bellsoft-jdk11.0.9.1+1-windows-i586.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "Liberica-bellsoft-jdk15.0.1+9-windows-i586.zip",
+          "className": "Liberica",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/liberica/15/standard/bellsoft-jdk15.0.1+9-windows-i586.zip",
+          "originalFileName": "bellsoft-jdk15.0.1+9-windows-i586.zip"
+        }
+      ],
+      "JDK8": [
+        {
+          "architecture": "X64",
+          "fileName": "Liberica-bellsoft-jdk8u275+1-windows-i586.zip",
+          "className": "Liberica",
+          "version": "JDK8",
+          "url": "https://d6.injdk.cn/openjdk/liberica/8/standard/bellsoft-jdk8u275+1-windows-i586.zip",
+          "originalFileName": "bellsoft-jdk8u275+1-windows-i586.zip"
+        }
+      ]
+    },
+    "RedHatOpenJDK": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "java-11-openjdk-11.0.9.11-3.windows.redhat.x86_64.zip",
+          "className": "RedHatOpenJDK",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/redhat/11/java-11-openjdk-11.0.9.11-3.windows.redhat.x86_64.zip",
+          "originalFileName": "java-11-openjdk-11.0.9.11-3.windows.redhat.x86_64.zip"
+        }
+      ],
+      "JDK14": [
+        {
+          "architecture": "X64",
+          "fileName": "java-14-openjdk-14.0.2.12-1.windows.redhat.x86_64.zip",
+          "className": "RedHatOpenJDK",
+          "version": "JDK14",
+          "url": "https://d6.injdk.cn/openjdk/redhat/14/java-14-openjdk-14.0.2.12-1.windows.redhat.x86_64.zip",
+          "originalFileName": "java-14-openjdk-14.0.2.12-1.windows.redhat.x86_64.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "java-15-openjdk-15.0.1.9-1.windows.redhat.x86_64.zip",
+          "className": "RedHatOpenJDK",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/redhat/15/java-15-openjdk-15.0.1.9-1.windows.redhat.x86_64.zip",
+          "originalFileName": "java-15-openjdk-15.0.1.9-1.windows.redhat.x86_64.zip"
+        }
+      ],
+      "JDK8": [
+        {
+          "architecture": "X64",
+          "fileName": "java-1.8.0-openjdk-1.8.0.275-1.b01.dev.redhat.windows.x86.zip",
+          "className": "RedHatOpenJDK",
+          "version": "JDK8",
+          "url": "https://d6.injdk.cn/openjdk/redhat/8/java-1.8.0-openjdk-1.8.0.275-1.b01.dev.redhat.windows.x86.zip",
+          "originalFileName": "java-1.8.0-openjdk-1.8.0.275-1.b01.dev.redhat.windows.x86.zip"
+        }
+      ]
+    },
+    "OracleJDK": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "OracleJDK-jdk-11.0.7_windows-x64_bin.zip",
+          "className": "OracleJDK",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/oracle/11/jdk-11.0.7_windows-x64_bin.zip",
+          "originalFileName": "jdk-11.0.7_windows-x64_bin.zip"
+        }
+      ],
+      "JDK14": [
+        {
+          "architecture": "X64",
+          "fileName": "OracleJDK-jdk-14.0.1_windows-x64_bin.zip",
+          "className": "OracleJDK",
+          "version": "JDK14",
+          "url": "https://d6.injdk.cn/oracle/14/jdk-14.0.1_windows-x64_bin.zip",
+          "originalFileName": "jdk-14.0.1_windows-x64_bin.zip"
+        }
+      ]
+    },
+    "Corretto": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "amazon-corretto-11.0.10.9.1-windows-x64-jdk.zip",
+          "className": "Corretto",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/amazon/11/amazon-corretto-11.0.10.9.1-windows-x64-jdk.zip",
+          "originalFileName": "amazon-corretto-11.0.10.9.1-windows-x64-jdk.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "amazon-corretto-15-x64-windows-jdk.zip",
+          "className": "Corretto",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/amazon/15/amazon-corretto-15-x64-windows-jdk.zip",
+          "originalFileName": "amazon-corretto-15-x64-windows-jdk.zip"
+        }
+      ],
+      "JDK8": [
+        {
+          "architecture": "X64",
+          "fileName": "amazon-corretto-8-x86-windows-jdk.zip",
+          "className": "Corretto",
+          "version": "JDK8",
+          "url": "https://d6.injdk.cn/openjdk/amazon/8/amazon-corretto-8-x86-windows-jdk.zip",
+          "originalFileName": "amazon-corretto-8-x86-windows-jdk.zip"
+        }
+      ]
+    },
+    "AdoptOpenJDK": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK11U-jdk_x86-32_windows_hotspot_11.0.8_10.zip",
+          "className": "AdoptOpenJDK",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/adoptopenjdk/11/OpenJDK11U-jdk_x86-32_windows_hotspot_11.0.8_10.zip",
+          "originalFileName": "OpenJDK11U-jdk_x86-32_windows_hotspot_11.0.8_10.zip"
+        }
+      ],
+      "JDK14": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK14U-jdk_x86-32_windows_hotspot_14.0.2_12.zip",
+          "className": "AdoptOpenJDK",
+          "version": "JDK14",
+          "url": "https://d6.injdk.cn/openjdk/adoptopenjdk/14/OpenJDK14U-jdk_x86-32_windows_hotspot_14.0.2_12.zip",
+          "originalFileName": "OpenJDK14U-jdk_x86-32_windows_hotspot_14.0.2_12.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK15U-jdk_x86-32_windows_hotspot_15_36.zip",
+          "className": "AdoptOpenJDK",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/adoptopenjdk/15/OpenJDK15U-jdk_x86-32_windows_hotspot_15_36.zip",
+          "originalFileName": "OpenJDK15U-jdk_x86-32_windows_hotspot_15_36.zip"
+        }
+      ],
+      "JDK8": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK8U-jdk_x86-32_windows_hotspot_8u262b10.zip",
+          "className": "AdoptOpenJDK",
+          "version": "JDK8",
+          "url": "https://d6.injdk.cn/openjdk/adoptopenjdk/8/OpenJDK8U-jdk_x86-32_windows_hotspot_8u262b10.zip",
+          "originalFileName": "OpenJDK8U-jdk_x86-32_windows_hotspot_8u262b10.zip"
+        }
+      ]
+    },
+    "OpenJDK": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-11+28_windows-x64_bin.zip",
+          "className": "OpenJDK",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/11/openjdk-11+28_windows-x64_bin.zip",
+          "originalFileName": "openjdk-11+28_windows-x64_bin.zip"
+        }
+      ],
+      "JDK12": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-12+32_windows-x64_bin.zip",
+          "className": "OpenJDK",
+          "version": "JDK12",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/12/openjdk-12+32_windows-x64_bin.zip",
+          "originalFileName": "openjdk-12+32_windows-x64_bin.zip"
+        }
+      ],
+      "JDK13": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-13.0.2_windows-x64_bin.zip",
+          "className": "OpenJDK",
+          "version": "JDK13",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/13/openjdk-13.0.2_windows-x64_bin.zip",
+          "originalFileName": "openjdk-13.0.2_windows-x64_bin.zip"
+        }
+      ],
+      "JDK14": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-14.0.2_windows-x64_bin.zip",
+          "className": "OpenJDK",
+          "version": "JDK14",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/14/openjdk-14.0.2_windows-x64_bin.zip",
+          "originalFileName": "openjdk-14.0.2_windows-x64_bin.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-15.0.2_windows-x64_bin.zip",
+          "className": "OpenJDK",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/15/openjdk-15.0.2_windows-x64_bin.zip",
+          "originalFileName": "openjdk-15.0.2_windows-x64_bin.zip"
+        }
+      ],
+      "JDK16": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-16-ea+12_windows-x64_bin.zip",
+          "className": "OpenJDK",
+          "version": "JDK16",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/16/openjdk-16-ea+12_windows-x64_bin.zip",
+          "originalFileName": "openjdk-16-ea+12_windows-x64_bin.zip"
+        }
+      ],
+      "JDK8": [
+        {
+          "architecture": "X64",
+          "fileName": "OpenJDK-openjdk-8u41-b04-windows-i586-14_jan_2020.zip",
+          "className": "OpenJDK",
+          "version": "JDK8",
+          "url": "https://d6.injdk.cn/openjdk/openjdk/8/openjdk-8u41-b04-windows-i586-14_jan_2020.zip",
+          "originalFileName": "openjdk-8u41-b04-windows-i586-14_jan_2020.zip"
+        }
+      ]
+    },
+    "SapMachine": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "sapmachine-jdk-11.0.8_windows-x64_bin.zip",
+          "className": "SapMachine",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/sapmachine/11/sapmachine-jdk-11.0.8_windows-x64_bin.zip",
+          "originalFileName": "sapmachine-jdk-11.0.8_windows-x64_bin.zip"
+        }
+      ],
+      "JDK14": [
+        {
+          "architecture": "X64",
+          "fileName": "sapmachine-jdk-14.0.2_windows-x64_bin.zip",
+          "className": "SapMachine",
+          "version": "JDK14",
+          "url": "https://d6.injdk.cn/openjdk/sapmachine/14/sapmachine-jdk-14.0.2_windows-x64_bin.zip",
+          "originalFileName": "sapmachine-jdk-14.0.2_windows-x64_bin.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "sapmachine-jdk-15_windows-x64_bin.zip",
+          "className": "SapMachine",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/sapmachine/15/sapmachine-jdk-15_windows-x64_bin.zip",
+          "originalFileName": "sapmachine-jdk-15_windows-x64_bin.zip"
+        }
+      ],
+      "JDK16": [
+        {
+          "architecture": "X64",
+          "fileName": "sapmachine-jdk-16-ea.7_windows-x64_bin.zip",
+          "className": "SapMachine",
+          "version": "JDK16",
+          "url": "https://d6.injdk.cn/openjdk/sapmachine/16/sapmachine-jdk-16-ea.7_windows-x64_bin.zip",
+          "originalFileName": "sapmachine-jdk-16-ea.7_windows-x64_bin.zip"
+        }
+      ]
+    },
+    "Zulu": {
+      "JDK11": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu11.43.55-ca-jdk11.0.9.1-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK11",
+          "url": "https://d6.injdk.cn/openjdk/zulu/11/zulu11.43.55-ca-jdk11.0.9.1-win_i686.zip",
+          "originalFileName": "zulu11.43.55-ca-jdk11.0.9.1-win_i686.zip"
+        }
+      ],
+      "JDK13": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu13.35.51-ca-jdk13.0.5.1-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK13",
+          "url": "https://d6.injdk.cn/openjdk/zulu/13/zulu13.35.51-ca-jdk13.0.5.1-win_i686.zip",
+          "originalFileName": "zulu13.35.51-ca-jdk13.0.5.1-win_i686.zip"
+        }
+      ],
+      "JDK15": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu15.28.51-ca-jdk15.0.1-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK15",
+          "url": "https://d6.injdk.cn/openjdk/zulu/15/zulu15.28.51-ca-jdk15.0.1-win_i686.zip",
+          "originalFileName": "zulu15.28.51-ca-jdk15.0.1-win_i686.zip"
+        }
+      ],
+      "JDK16EA": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu16.0.75-ea-jdk16.0.0-ea.29-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK16EA",
+          "url": "https://d6.injdk.cn/openjdk/zulu/16/zulu16.0.75-ea-jdk16.0.0-ea.29-win_i686.zip",
+          "originalFileName": "zulu16.0.75-ea-jdk16.0.0-ea.29-win_i686.zip"
+        }
+      ],
+      "JDK17EA": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu17.0.13-ea-jdk17.0.0-ea.2-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK17EA",
+          "url": "https://d6.injdk.cn/openjdk/zulu/17/zulu17.0.13-ea-jdk17.0.0-ea.2-win_i686.zip",
+          "originalFileName": "zulu17.0.13-ea-jdk17.0.0-ea.2-win_i686.zip"
+        }
+      ],
+      "JDK6": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu6.22.0.3-jdk6.0.119-win_x64.zip",
+          "className": "Zulu",
+          "version": "JDK6",
+          "url": "https://d6.injdk.cn/openjdk/zulu/6/zulu6.22.0.3-jdk6.0.119-win_x64.zip",
+          "originalFileName": "zulu6.22.0.3-jdk6.0.119-win_x64.zip"
+        }
+      ],
+      "JDK7": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu7.42.0.51-ca-jdk7.0.285-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK7",
+          "url": "https://d6.injdk.cn/openjdk/zulu/7/zulu7.42.0.51-ca-jdk7.0.285-win_i686.zip",
+          "originalFileName": "zulu7.42.0.51-ca-jdk7.0.285-win_i686.zip"
+        }
+      ],
+      "JDK8": [
+        {
+          "architecture": "X64",
+          "fileName": "Zulu_zulu8.50.0.51-ca-jdk8.0.275-win_i686.zip",
+          "className": "Zulu",
+          "version": "JDK8",
+          "url": "https://d6.injdk.cn/openjdk/zulu/8/zulu8.50.0.51-ca-jdk8.0.275-win_i686.zip",
+          "originalFileName": "zulu8.50.0.51-ca-jdk8.0.275-win_i686.zip"
+        }
+      ]
+    }
+  }
+}

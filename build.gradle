@@ -16,7 +16,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.1'
-
 }
 
 test {
