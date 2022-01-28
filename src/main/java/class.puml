@@ -1,0 +1,128 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+enum ArchEnum {
+    X86
+    X64
+    S390X
+    PPC64LE
+    AARCH64
+    ARM32
+    UNKNOWN
+}
+enum OSEnum {
+    LINUX
+    ALPINE
+    WINDOWS
+    MACOS
+    UNKNOWN
+}
+enum PackageTypeEnum {
+    ZIP
+    TARGZ
+    UNKNOWN
+}
+class Platform{
+    - OSEnum os : 操作系统
+    - ArchEnum arch : 平台架构
+    # Platform(OSEnum os, ArchEnum arch)
+    + {static} OSEnum getCurrentOS()
+    + {static} Platform getCurrentPlatform()
+    + {static} ArchEnum getCurrentArch()
+}
+class JetbrainsPlatform extends Platform {
+    + JetbrainsPlatform(OSEnum os, ArchEnum arch)
+    + JetbrainsPlatform(String os, String arch)
+    + {static} OSEnum getOSByValue(String value)
+    + {static} ArchEnum getArchByValue(String value)
+}
+abstract  AbstractJdkInfo {
+    # String vendor : 厂家标识
+    # String product : 产品标识
+    # OSEnum os : 操作系统
+    # ArchEnum arch: 平台架构
+    # int jdkVersionMajor : jdk主要版本
+    # String jdkVersion : jdk版本
+}
+
+abstract  AbstractPackage {
+    # AbstractJdkInfo jdkInfo : JDK信息
+    # String url : JDK下载地址
+    # PackageTypeEnum packageType : JDK打包方式
+    + {abstract} download(Path to)
+    + {abstract} unpack(Path to)
+}
+AbstractPackage *-- AbstractJdkInfo
+
+class JetbrainsJdkInfo extends AbstractJdkInfo{}
+
+class JetbrainsPackage extends AbstractPackage {
+    - String archiveFileName : JDK压缩包文件名
+    - String installFolderName : JDK压缩包解压名
+    - int archiveSize : JDK压缩包大小
+    - int unpackedSize : JDK压缩包解压后大小
+    - String sha256 : JDK压缩包SHA256
+    + download(Path to)
+    + unpack(Path to)
+}
+
+class LocalJdk{
+    + Path locate : 本地jdk保存的位置
+    + AbstractJdkInfo jdkInfo : 本地已安装的jdk信息
+}
+
+interface Resource{
+    + {abstract} List<AbstractPackage> getJdkListFromRemote()
+    + {abstract} List<AbstractJdkInfo> getInfoListFromRemote()
+}
+class JetbrainsResource extends Resource{
+}
+interface Command{
+    # {abstract} execute()
+}
+abstract AbstractCommand extends Command{
+    - Resource resource : JDK源
+    # {abstract} execute()
+    # List<LocalJdk> getLocalJdks()
+    # List<AbstractPackage> getJdkListFromRemote()
+    # List<AbstractJdkInfo> getInfoListFromRemote()
+    # List<AbstractPackage> getAvailableJdksFromDB()
+
+}
+AbstractCommand *-- Resource
+class ListCommand extends Command{
+    + execute()
+    - void showInfoList()
+}
+class UpdateCommand extends AbstractCommand{
+    + execute()
+}
+class ListAvailableJdkCommand extends AbstractCommand{
+    + execute()
+}
+class UpgradeCommand extends AbstractCommand{
+    + execute()
+    - void upgrade(LocalJdk localJdk,AbstractPackage abstractPackage)
+    - void emptyFolder(Path dst)
+    - void showAvailableJdks()
+}
+class InfoCommand extends AbstractCommand{
+    + execute()
+    - void showSystemInfo()
+}
+class InstallCommand extends AbstractCommand{
+    - AbstractJdkInfo jdkInfo : 被指定要安装的jdk
+    + execute()
+    - void install(AbstractPackage abstractPackage)
+}
+class UninstallCommand extends AbstractCommand{
+    - AbstractJdkInfo jdkInfo : 被指定要安装的jdk
+    + execute()
+    - void uninstall(LocalJdk localJdk)
+}
+class DownloadCommand extends AbstractCommand{
+    - AbstractJdkInfo jdkInfo : 被指定要下载的jdk
+    + execute()
+    - void download(AbstractPackage abstractPackage,Path dst)
+}
+@enduml

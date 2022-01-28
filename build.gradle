@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.1'
+    id "io.freefair.lombok" version "6.3.0"
 }
 
 group 'top.codexvn'
@@ -10,10 +12,22 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'org.apache.commons:commons-compress:1.21'
+// https://mvnrepository.com/artifact/cn.hutool/hutool-all
+    implementation 'cn.hutool:hutool-all:5.7.20'
+    implementation 'info.picocli:picocli:4.6.2'
+    annotationProcessor 'info.picocli:picocli-codegen:4.6.2'
+//    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.1'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
-
+jar {
+    manifest {
+        attributes 'Main-Class': 'top.codexvn.ApplicationBoot'
+    }
+}
 test {
     useJUnitPlatform()
 }
