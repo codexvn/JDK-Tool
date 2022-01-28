@@ -103,32 +103,38 @@ public class JetbrainsPackage extends AbstractPackage {
             @SneakyThrows
             @Override
             public void run() {
-                URLConnection connection = source.openConnection();
-                connection.setRequestProperty("Range", String.format("bytes=%d-%d", begin, end));
-                connection.connect();
-                try (InputStream input = new BufferedInputStream(connection.getInputStream()); RandomAccessFile output = new RandomAccessFile(targetFile, "rw")) {
-                    byte[] buffer = new byte[BUFFER_SIZE];
-                    int read;
-                    output.seek(begin);
-                    while ((read = input.read(buffer)) != -1) {
-                        output.write(buffer, 0, read);
-                        progressBar.stepBy(read);
+                try {
+                    URLConnection connection = source.openConnection();
+                    connection.setRequestProperty("Range", String.format("bytes=%d-%d", begin, end));
+                    connection.connect();
+                    try (InputStream input = new BufferedInputStream(connection.getInputStream()); RandomAccessFile output = new RandomAccessFile(targetFile, "rw")) {
+                        byte[] buffer = new byte[BUFFER_SIZE];
+                        int read;
+                        output.seek(begin);
+                        while ((read = input.read(buffer)) != -1) {
+                            output.write(buffer, 0, read);
+                            progressBar.stepBy(read);
+                        }
                     }
+                } finally {
+                    progressBar.close();
+                    cdl.countDown();
                 }
-                cdl.countDown();
             }
         }
         CountDownLatch cdl = new CountDownLatch(8);
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         long contentLength = DownloadUtil.getContentLength(source);
-        try (ProgressBar progressBar = progressBarBuilder.setInitialMax(contentLength).build()) {
-            long fragmentSize = (long) Math.ceil(contentLength / 8.0);
-            for (long i = 0; i < contentLength; i += fragmentSize) {
-                executorService.execute(new DownloadTask(source, i, Math.min(i + fragmentSize - 1, contentLength - 1), targetFile, progressBar, cdl));
-            }
-            executorService.shutdown();
-            cdl.await();
+        progressBarBuilder.setInitialMax(contentLength);
+        long fragmentSize = (long) Math.ceil(contentLength / 8.0);
+        for (long i = 0, j = 1; i < contentLength; i += fragmentSize, j++) {
+            progressBarBuilder.setTaskName("分片下载[" + j + "]")
+                .setInitialMax(Math.min(i + fragmentSize, contentLength) - i);
+            ProgressBar progressBar = progressBarBuilder.build();
+            executorService.execute(new DownloadTask(source, i, Math.min(i + fragmentSize - 1, contentLength - 1), targetFile, progressBar, cdl));
         }
+        executorService.shutdown();
+        cdl.await();
     }
 
     @SneakyThrows
