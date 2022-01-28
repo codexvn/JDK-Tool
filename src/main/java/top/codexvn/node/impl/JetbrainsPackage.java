@@ -11,9 +11,10 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.SneakyThrows;
+import me.tongfei.progressbar.ProgressBar;
+import me.tongfei.progressbar.ProgressBarBuilder;
 import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
-import top.codexvn.ProgressBar;
 import top.codexvn.enums.PackageTypeEnum;
 import top.codexvn.node.AbstractPackage;
 import top.codexvn.utils.DownloadUtil;
@@ -58,47 +59,42 @@ public class JetbrainsPackage extends AbstractPackage {
     }
 
     @Override
-    public File download(Path to, ProgressBar progressBar) {
-        return download(to, archiveFileName, progressBar);
+    public File download(Path to, ProgressBarBuilder progressBarBuilder) {
+        return download(to, archiveFileName, progressBarBuilder);
     }
 
     @SneakyThrows
     @Override
-    public File download(Path to, String archiveFileName, ProgressBar progressBar) {
-        if (!Files.isDirectory(to)) {
-            Files.createDirectories(to);
-        }
+    public File download(Path to, String archiveFileName, ProgressBarBuilder progressBarBuilder) {
+        ensureDirExist(to);
         File targetFile = to.resolve(archiveFileName).toFile();
-        downloadToFile(targetFile, progressBar);
+        downloadToFile(targetFile, progressBarBuilder);
         return targetFile;
     }
 
     @SneakyThrows
-    private void downloadToFile(File targetFile, ProgressBar progressBar) {
-        progressBar.start();
+    private void downloadToFile(File targetFile, ProgressBarBuilder progressBarBuilder) {
         URL source = new URL(url);
         if (DownloadUtil.acceptRangeRequest(source)) {
-            fragmentDownload(source, targetFile, progressBar);
+            fragmentDownload(source, targetFile, progressBarBuilder);
         } else {
-            normalDownload(source, targetFile, progressBar);
+            normalDownload(source, targetFile, progressBarBuilder);
         }
-        progressBar.finish();
     }
 
     @SneakyThrows
-    private void fragmentDownload(URL source, File targetFile, ProgressBar progressBar) {
+    private void fragmentDownload(URL source, File targetFile, ProgressBarBuilder progressBarBuilder) {
         class DownloadTask implements Runnable {
             private final URL source;
-            private final long begin, end, totalSize;
+            private final long begin, end;
             private final File targetFile;
             private final ProgressBar progressBar;
             private final CountDownLatch cdl;
 
-            DownloadTask(URL source, long begin, long end, long totalSize, File targetFile, ProgressBar progressBar, CountDownLatch cdl) {
+            DownloadTask(URL source, long begin, long end, File targetFile, ProgressBar progressBar, CountDownLatch cdl) {
                 this.source = source;
                 this.begin = begin;
                 this.end = end;
-                this.totalSize = totalSize;
                 this.targetFile = targetFile;
                 this.progressBar = progressBar;
                 this.cdl = cdl;
@@ -116,7 +112,7 @@ public class JetbrainsPackage extends AbstractPackage {
                     output.seek(begin);
                     while ((read = input.read(buffer)) != -1) {
                         output.write(buffer, 0, read);
-                        progressBar.progress(totalSize, read);
+                        progressBar.stepBy(read);
                     }
                 }
                 cdl.countDown();
@@ -125,41 +121,43 @@ public class JetbrainsPackage extends AbstractPackage {
         CountDownLatch cdl = new CountDownLatch(8);
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         long contentLength = DownloadUtil.getContentLength(source);
-        long fragmentSize = (long) Math.ceil(contentLength / 8.0);
-        for (long i = 0; i < contentLength; i += fragmentSize) {
-            executorService.execute(new DownloadTask(source, i, Math.min(i + fragmentSize - 1, contentLength - 1), contentLength, targetFile, progressBar, cdl));
+        try (ProgressBar progressBar = progressBarBuilder.setInitialMax(contentLength).build()) {
+            long fragmentSize = (long) Math.ceil(contentLength / 8.0);
+            for (long i = 0; i < contentLength; i += fragmentSize) {
+                executorService.execute(new DownloadTask(source, i, Math.min(i + fragmentSize - 1, contentLength - 1), targetFile, progressBar, cdl));
+            }
+            executorService.shutdown();
+            cdl.await();
         }
-        executorService.shutdown();
-        cdl.await();
     }
 
     @SneakyThrows
-    private void normalDownload(URL source, File targetFile, ProgressBar progressBar) {
-        progressBar.start();
+    private void normalDownload(URL source, File targetFile, ProgressBarBuilder progressBarBuilder) {
         URLConnection connection = source.openConnection();
         connection.connect();
-        try (InputStream input = new BufferedInputStream(connection.getInputStream()); OutputStream output = new FileOutputStream(targetFile)) {
-            doCopy(input, output, connection.getContentLengthLong(), progressBar);
+        try (InputStream input = new BufferedInputStream(connection.getInputStream());
+             OutputStream output = new FileOutputStream(targetFile);
+             ProgressBar progressBar = progressBarBuilder.setInitialMax(connection.getContentLength()).build()) {
+            doCopy(input, output, progressBar);
         }
-        progressBar.finish();
     }
 
 
-    private static void doCopy(InputStream input, OutputStream output, long totalSize, ProgressBar progressBar) throws IOException {
+    private static void doCopy(InputStream input, OutputStream output, ProgressBar progressBar) throws IOException {
         byte[] buffer = new byte[BUFFER_SIZE];
         int read;
         while ((read = input.read(buffer)) != -1) {
             output.write(buffer, 0, read);
-            progressBar.progress(totalSize, read);
+            progressBar.stepBy(read);
         }
     }
 
     @SneakyThrows
     @Override
-    public void unpack(Path to, ProgressBar progressBar) {
+    public void unpack(Path to, ProgressBarBuilder progressBarBuilder) {
         ensureDirExist(to);
         Path tmpFile = generateTmpDir();
-        download(tmpFile, archiveFileName, progressBar);
+        download(tmpFile, archiveFileName, progressBarBuilder);
         checkSHA256(getSha256(), tmpFile.resolve(archiveFileName).toFile());
         try (InputStream input = Files.newInputStream(tmpFile.resolve(archiveFileName))) {
             Extractor extractor = null;

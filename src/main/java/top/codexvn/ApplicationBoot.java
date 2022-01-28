@@ -14,7 +14,8 @@ import top.codexvn.command.*;
         UpgradeCommand.class,
         UpdateCommand.class,
         InfoCommand.class,
-        HelpCommand.class
+        HelpCommand.class,
+        TestCommand.class
     }
 )
 @Slf4j

@@ -1,6 +1,8 @@
 package top.codexvn.utils;
 
 import lombok.SneakyThrows;
+import me.tongfei.progressbar.ProgressBarBuilder;
+import me.tongfei.progressbar.ProgressBarStyle;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -21,5 +23,14 @@ public class DownloadUtil {
         URLConnection connection = source.openConnection();
         connection.connect();
         return connection.getContentLength();
+    }
+
+    public static ProgressBarBuilder getDownloaderProgressBarBuilder() {
+        return new ProgressBarBuilder()
+            .setTaskName("下载")
+            .setStyle(ProgressBarStyle.ASCII)
+            .setUpdateIntervalMillis(100)
+            .setUnit(" Mb", 1024 * 1024)
+            .showSpeed();
     }
 }

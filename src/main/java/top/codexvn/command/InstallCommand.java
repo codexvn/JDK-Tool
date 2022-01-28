@@ -9,7 +9,6 @@ import java.util.concurrent.Callable;
 @Slf4j
 public class InstallCommand implements Callable<Integer> {
     private Integer code;
-
     @Override
     public Integer call()  {
         log.error(String.valueOf(code));
