@@ -16,6 +16,8 @@ import me.tongfei.progressbar.ProgressBarBuilder;
 import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import top.codexvn.enums.PackageTypeEnum;
+import top.codexvn.exceptions.HashMismatchException;
+import top.codexvn.exceptions.UnknownPackageTypeException;
 import top.codexvn.node.AbstractPackage;
 import top.codexvn.utils.DownloadUtil;
 
@@ -183,7 +185,7 @@ public class JetbrainsPackage extends AbstractPackage {
                     );
                     break;
                 case UNKNOWN:
-                    throw new IllegalStateException("Unknown package type");
+                    throw new UnknownPackageTypeException();
             }
             ensureDirExistAndClearDir(to);
             Objects.requireNonNull(extractor).extract(to.toFile());
@@ -196,7 +198,7 @@ public class JetbrainsPackage extends AbstractPackage {
         Digester digester = new Digester(DigestAlgorithm.SHA256);
         String sha256 = digester.digestHex(file);
         if (!expected.equals(sha256)) {
-            throw new IllegalStateException("SHA256 mismatch,\nexpected: " + expected + ",\nactual: " + sha256);
+            throw new HashMismatchException("SHA256 mismatch,\nexpected: " + expected + ",\nactual: " + sha256);
         }
     }
 
@@ -224,4 +226,5 @@ public class JetbrainsPackage extends AbstractPackage {
         }
 
     }
+
 }

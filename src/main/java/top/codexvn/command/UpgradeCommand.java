@@ -5,7 +5,7 @@ import picocli.CommandLine.Command;
 
 import java.util.concurrent.Callable;
 
-@Command(name="upgrade",description="更新JDK数据")
+@Command(name = "upgrade", description = "更新指定JDK")
 @Slf4j
 public class UpgradeCommand implements Callable<Integer> {
     @Override

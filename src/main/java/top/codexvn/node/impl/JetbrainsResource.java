@@ -49,6 +49,9 @@ public class JetbrainsResource implements Resource {
                 });
             }
         }
+        for (var i : result.values()) {
+            Collections.sort(i);
+        }
         return result;
     }
     @SneakyThrows
@@ -67,6 +70,9 @@ public class JetbrainsResource implements Resource {
                     return o;
                 });
             }
+        }
+        for (var i : result.values()) {
+            Collections.sort(i);
         }
         return result;
     }

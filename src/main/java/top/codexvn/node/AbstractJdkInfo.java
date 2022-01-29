@@ -7,7 +7,6 @@ import top.codexvn.enums.OSEnum;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Objects;
 
 
 @Getter
@@ -15,22 +14,39 @@ import java.util.Objects;
 
 public abstract class AbstractJdkInfo implements Comparable<AbstractJdkInfo>, Serializable {
     private static final long serialVersionUID = 1L;
-    protected  String vendor;
-    protected  String product;
+    protected String vendor;
+    protected String product;
     protected OSEnum os;
     protected ArchEnum arch;
-    protected  String jdkVersionMajor;
-    protected  String jdkVersion;
+    protected String jdkVersionMajor;
+    protected String jdkVersion;
+
     @Override
-    public int compareTo( AbstractJdkInfo o) {
-        Integer[] thisJdkVersion = Arrays.stream(this.jdkVersion.split("\\.")).map(Integer::parseInt).toArray(Integer[]::new);
-        Integer[] OJdkVersion = Arrays.stream(o.jdkVersion.split("\\.")).map(Integer::parseInt).toArray(Integer[]::new);
-        if (!Objects.equals(thisJdkVersion[0], OJdkVersion[0])) {
-            return thisJdkVersion[0] - OJdkVersion[0];
-        }else if (!Objects.equals(thisJdkVersion[1], OJdkVersion[1])) {
-            return thisJdkVersion[1] - OJdkVersion[1];
+    public int compareTo(AbstractJdkInfo o) {
+        if (compareVendor(o.getVendor()) != 0) {
+            return compareVendor(o.getVendor());
+        } else if (compareProduct(o.getProduct()) != 0) {
+            return compareProduct(o.getProduct());
+        } else {
+            return compareJdkVersion(o.getJdkVersion());
         }
-        return thisJdkVersion[2] - OJdkVersion[2];
+    }
+
+    private int compareVendor(String o) {
+        return this.vendor.compareTo(o);
+    }
+
+    private int compareProduct(String o) {
+        return this.product.compareTo(o);
+    }
+
+    private int compareJdkVersion(String o) {
+        return Arrays.compare(pauseJdkVersion(this.jdkVersion), pauseJdkVersion(o));
+    }
+
+    private Integer[] pauseJdkVersion(String o) {
+        String version = o.replaceAll("[^0-9.]", "");
+        return Arrays.stream(version.split("\\.")).map(Integer::parseInt).toArray(Integer[]::new);
     }
 
 }

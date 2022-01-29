@@ -11,12 +11,19 @@ import java.nio.file.Path;
 
 @Data
 @EqualsAndHashCode
-public abstract class AbstractPackage  implements Serializable {
+public abstract class AbstractPackage implements Serializable, Comparable<AbstractPackage> {
     private static final long serialVersionUID = 1L;
     protected AbstractJdkInfo jdkInfo;
-    protected  String url;
+    protected String url;
     protected PackageTypeEnum packageType;
+
     public abstract File download(Path to, ProgressBarBuilder progressBarBuilder);
-    public abstract  File download(Path to,String archiveFileName, ProgressBarBuilder progressBarBuilder);
-    public abstract  void  unpack(Path to, ProgressBarBuilder progressBarBuilder);
+
+    public abstract File download(Path to, String archiveFileName, ProgressBarBuilder progressBarBuilder);
+
+    public abstract void unpack(Path to, ProgressBarBuilder progressBarBuilder);
+
+    public int compareTo(AbstractPackage o) {
+        return this.jdkInfo.compareTo(o.jdkInfo);
+    }
 }
