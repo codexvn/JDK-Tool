@@ -15,33 +15,45 @@ import top.codexvn.node.AbstractJdkInfo;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class JetbrainsJdkInfo extends AbstractJdkInfo {
     public void setOs(String os) {
-        switch (os) {
-            case "macOS":
-                this.os = OSEnum.MACOS;
-                break;
-            case "linux":
-                this.os = OSEnum.LINUX;
-                break;
-            case "windows":
-                this.os = OSEnum.WINDOWS;
-                break;
-            default:
-                this.os = OSEnum.UNKNOWN;
-                break;
+        try {
+            this.os = Enum.valueOf(OSEnum.class, os);
+        } catch (IllegalArgumentException e) {
+            switch (os) {
+                case "macOS":
+                    this.os = OSEnum.MACOS;
+                    break;
+                case "linux":
+                    this.os = OSEnum.LINUX;
+                    break;
+                case "windows":
+                    this.os = OSEnum.WINDOWS;
+                    break;
+                default:
+                    this.os = OSEnum.UNKNOWN;
+                    break;
+            }
         }
     }
 
     public void setArch(String arch) {
-        switch (arch) {
-            case "x86_64":
-                this.arch = ArchEnum.X64;
-                break;
-            case "aarch64":
-                this.arch = ArchEnum.AARCH64;
-                break;
-            default:
-                this.arch = ArchEnum.UNKNOWN;
-                break;
+
+        try {
+            this.arch = Enum.valueOf(ArchEnum.class, arch);
+        } catch (IllegalArgumentException e) {
+            switch (arch) {
+                case "x86_64":
+                case "X64":
+                    this.arch = ArchEnum.X64;
+                    break;
+                case "aarch64":
+                case "AARCH64":
+                    this.arch = ArchEnum.AARCH64;
+                    break;
+                default:
+                    this.arch = ArchEnum.UNKNOWN;
+                    break;
+            }
         }
+
     }
 }

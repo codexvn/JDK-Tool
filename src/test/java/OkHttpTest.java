@@ -1,14 +1,7 @@
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import top.codexvn.node.AbstractJdkInfo;
-import top.codexvn.node.Resource;
-import top.codexvn.node.impl.JetbrainsResource;
-import top.codexvn.platform.JetbrainsPlatform;
-import top.codexvn.platform.Platform;
-
-import java.util.List;
-import java.util.Map;
+import top.codexvn.command.ListCommand;
 
 @Slf4j
 public class OkHttpTest {
@@ -21,10 +14,8 @@ public class OkHttpTest {
     @Test
     @SneakyThrows
     void okHttp() {
-        Resource resource = new JetbrainsResource();
-        Map<Platform, List<AbstractJdkInfo>> infoListFromRemote = resource.getInfoListFromRemote();
-        Platform currentPlatform = JetbrainsPlatform.getCurrentPlatform();
-        List<AbstractJdkInfo> jdkInfos = infoListFromRemote.get(currentPlatform);
+        new ListCommand().call();
 
     }
+
 }

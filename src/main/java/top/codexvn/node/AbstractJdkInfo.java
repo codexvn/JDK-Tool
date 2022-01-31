@@ -11,7 +11,6 @@ import java.util.Arrays;
 
 @Getter
 @EqualsAndHashCode
-
 public abstract class AbstractJdkInfo implements Comparable<AbstractJdkInfo>, Serializable {
     private static final long serialVersionUID = 1L;
     protected String vendor;

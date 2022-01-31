@@ -65,7 +65,6 @@ public class JetbrainsPackage extends AbstractPackage {
         return download(to, archiveFileName, progressBarBuilder);
     }
 
-    @SneakyThrows
     @Override
     public File download(Path to, String archiveFileName, ProgressBarBuilder progressBarBuilder) {
         ensureDirExist(to);
@@ -86,6 +85,7 @@ public class JetbrainsPackage extends AbstractPackage {
 
     @SneakyThrows
     private void fragmentDownload(URL source, File targetFile, ProgressBarBuilder progressBarBuilder) {
+
         class DownloadTask implements Runnable {
             private final URL source;
             private final long begin, end;

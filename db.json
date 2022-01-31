@@ -1,0 +1,498 @@
+{
+  "localJdk": [],
+  "jdkList": [
+    {
+      "jdk_info": {
+        "vendor": "Amazon",
+        "product": "Corretto",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "8",
+        "jdk_version": "1.8.0_322"
+      },
+      "url": "https://corretto.aws/downloads/latest/amazon-corretto-8-x64-windows-jdk.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "amazon-corretto-8-x64-windows-jdk.zip",
+      "install_folder_name": "corretto-1.8.0_322",
+      "archive_size": 122243868,
+      "unpacked_size": 225037893,
+      "sha256": "0add49182709fdd37d51c90073ef6b071d485be977cf1418f89f50244d0d9246"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Amazon",
+        "product": "Corretto",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.14"
+      },
+      "url": "https://corretto.aws/downloads/latest/amazon-corretto-11-x64-windows-jdk.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "amazon-corretto-11-x64-windows-jdk.zip",
+      "install_folder_name": "corretto-11.0.14",
+      "archive_size": 187063380,
+      "unpacked_size": 307292520,
+      "sha256": "c7dd2a6ee1c8ad4800c1c00c39a9af335006ca4510e9dcd86e3c9315baa7e936"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Amazon",
+        "product": "Corretto",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "15",
+        "jdk_version": "15.0.2"
+      },
+      "url": "https://corretto.aws/downloads/latest/amazon-corretto-15-x64-windows-jdk.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "amazon-corretto-15-x64-windows-jdk.zip",
+      "install_folder_name": "corretto-15.0.2",
+      "archive_size": 194422394,
+      "unpacked_size": 330769082,
+      "sha256": "39bf4a60ab2b7335f627d6d3121e44163caf458a0299d0f696fb351a128c2c4f"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Amazon",
+        "product": "Corretto",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "16",
+        "jdk_version": "16.0.2"
+      },
+      "url": "https://corretto.aws/downloads/latest/amazon-corretto-16-x64-windows-jdk.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "amazon-corretto-16-x64-windows-jdk.zip",
+      "install_folder_name": "corretto-16.0.2",
+      "archive_size": 199339375,
+      "unpacked_size": 341626023,
+      "sha256": "d3a1790dabe0a11f57a84db9bf28cab6fe658757ff43248cea14eb4ba32f314f"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Amazon",
+        "product": "Corretto",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.2"
+      },
+      "url": "https://corretto.aws/downloads/latest/amazon-corretto-17-x64-windows-jdk.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "amazon-corretto-17-x64-windows-jdk.zip",
+      "install_folder_name": "corretto-17.0.2",
+      "archive_size": 185617288,
+      "unpacked_size": 315068115,
+      "sha256": "0d9d33ceb294a23973b2852e9d35d7d0e6a29734c127a7a3bcbac67f9fef6a8f"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Azul",
+        "product": "Zulu Community™",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "8",
+        "jdk_version": "1.8.0_322"
+      },
+      "url": "https://cdn.azul.com/zulu/bin/zulu8.60.0.21-ca-jdk8.0.322-win_x64.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "zulu8.60.0.21-ca-jdk8.0.322-win_x64.zip",
+      "install_folder_name": "azul-1.8.0_322",
+      "archive_size": 108633142,
+      "unpacked_size": 200682419,
+      "sha256": "c986e0ffe888089e75422d7c2972557ba06d9f9893f89df16da4b85d02f25219"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Azul",
+        "product": "Zulu Community™",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.14"
+      },
+      "url": "https://cdn.azul.com/zulu/bin/zulu11.54.23-ca-jdk11.0.14-win_x64.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "zulu11.54.23-ca-jdk11.0.14-win_x64.zip",
+      "install_folder_name": "azul-11.0.14",
+      "archive_size": 196842501,
+      "unpacked_size": 312849294,
+      "sha256": "edf1737598489ae34d0eeedcc6e2cc6b86cfe080b8836a1f93a26b06d7082dbe"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Azul",
+        "product": "Zulu Community™",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "13",
+        "jdk_version": "13.0.10"
+      },
+      "url": "https://cdn.azul.com/zulu/bin/zulu13.46.15-ca-jdk13.0.10-win_x64.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "zulu13.46.15-ca-jdk13.0.10-win_x64.zip",
+      "install_folder_name": "azul-13.0.10",
+      "archive_size": 204472343,
+      "unpacked_size": 330430440,
+      "sha256": "869e84be7c0448af8cb4b3af20fb1e8288a97c139db268539a71083303b0f1b2"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Azul",
+        "product": "Zulu Community™",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "15",
+        "jdk_version": "15.0.6"
+      },
+      "url": "https://cdn.azul.com/zulu/bin/zulu15.38.17-ca-jdk15.0.6-win_x64.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "zulu15.38.17-ca-jdk15.0.6-win_x64.zip",
+      "install_folder_name": "azul-15.0.6",
+      "archive_size": 204421664,
+      "unpacked_size": 336931333,
+      "sha256": "84abe2b936bf6d7234a8854ad6ded81d6d7848430a562684ca0c52590b10ab9f"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Azul",
+        "product": "Zulu Community™",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "16",
+        "jdk_version": "16.0.2"
+      },
+      "url": "https://cdn.azul.com/zulu/bin/zulu16.32.15-ca-jdk16.0.2-win_x64.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "zulu16.32.15-ca-jdk16.0.2-win_x64.zip",
+      "install_folder_name": "azul-16.0.2",
+      "archive_size": 208768802,
+      "unpacked_size": 346133894,
+      "sha256": "2b9ad008596c535c0b4da6ddabe56b35af3198cf00a933b1e60e074a30f31047"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Azul",
+        "product": "Zulu Community™",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.2"
+      },
+      "url": "https://cdn.azul.com/zulu/bin/zulu17.32.13-ca-jdk17.0.2-win_x64.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "zulu17.32.13-ca-jdk17.0.2-win_x64.zip",
+      "install_folder_name": "azul-17.0.2",
+      "archive_size": 194319401,
+      "unpacked_size": 320275884,
+      "sha256": "e965aa0ea7a0661a3446cf8f10ee00684b851f883b803315289f26b4aa907fdb"
+    },
+    {
+      "jdk_info": {
+        "vendor": "BellSoft",
+        "product": "Liberica JDK",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "8",
+        "jdk_version": "1.8.0_322"
+      },
+      "url": "https://github.com/bell-sw/Liberica/releases/download/8u322+6/bellsoft-jdk8u322+6-windows-amd64-full.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "bellsoft-jdk8u322+6-windows-amd64-full.zip",
+      "install_folder_name": "liberica-1.8.0_322",
+      "archive_size": 141874605,
+      "unpacked_size": 288830752,
+      "sha256": "6306a035234a6415518a25ba6a6c189b8afcf22e8244cd6f2c6394c5504023e4"
+    },
+    {
+      "jdk_info": {
+        "vendor": "BellSoft",
+        "product": "Liberica JDK",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.14"
+      },
+      "url": "https://github.com/bell-sw/Liberica/releases/download/11.0.14+9/bellsoft-jdk11.0.14+9-windows-amd64-full.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "bellsoft-jdk11.0.14+9-windows-amd64-full.zip",
+      "install_folder_name": "liberica-11.0.14",
+      "archive_size": 276696684,
+      "unpacked_size": 454718344,
+      "sha256": "2409a7b8f81f33d1db40608e251d9c696c854c0367a28b19fe1f5874f632c588"
+    },
+    {
+      "jdk_info": {
+        "vendor": "BellSoft",
+        "product": "Liberica JDK",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.2"
+      },
+      "url": "https://github.com/bell-sw/Liberica/releases/download/17.0.2+9/bellsoft-jdk17.0.2+9-windows-amd64-full.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "bellsoft-jdk17.0.2+9-windows-amd64-full.zip",
+      "install_folder_name": "liberica-17.0.2",
+      "archive_size": 270231258,
+      "unpacked_size": 456337135,
+      "sha256": "9f2d823e519fd31fa8b9f8a961a57b198acd98e0689b3a9c3e5ac40c2e3183c5"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Eclipse",
+        "product": "Temurin",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "8",
+        "jdk_version": "1.8.0_312"
+      },
+      "url": "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u312-b07/OpenJDK8U-jdk_x64_windows_hotspot_8u312b07.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "OpenJDK8U-jdk_x64_windows_hotspot_8u312b07.zip",
+      "install_folder_name": "temurin-1.8.0_312",
+      "archive_size": 104315798,
+      "unpacked_size": 194838146,
+      "sha256": "d957ada22f53d201d78f0ad3844e9e55da0b279e67c1e6c9366276cb5d8a981a"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Eclipse",
+        "product": "Temurin",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.14"
+      },
+      "url": "https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14%2B9/OpenJDK11U-jdk_x64_windows_hotspot_11.0.14_9.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "OpenJDK11U-jdk_x64_windows_hotspot_11.0.14_9.zip",
+      "install_folder_name": "temurin-11.0.14",
+      "archive_size": 196821226,
+      "unpacked_size": 315812191,
+      "sha256": "74cacadc37e5ba33e0055bf1de1a0754635fa70f9762c46c38e884158ad74e6a"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Eclipse",
+        "product": "Temurin",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "16",
+        "jdk_version": "16.0.2"
+      },
+      "url": "https://github.com/adoptium/temurin16-binaries/releases/download/jdk-16.0.2%2B7/OpenJDK16U-jdk_x64_windows_hotspot_16.0.2_7.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "OpenJDK16U-jdk_x64_windows_hotspot_16.0.2_7.zip",
+      "install_folder_name": "temurin-16.0.2",
+      "archive_size": 203448494,
+      "unpacked_size": 340646621,
+      "sha256": "40191ffbafd8a6f9559352d8de31e8d22a56822fb41bbcf45f34e3fd3afa5f9e"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Eclipse",
+        "product": "Temurin",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.1"
+      },
+      "url": "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.1%2B12/OpenJDK17U-jdk_x64_windows_hotspot_17.0.1_12.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "OpenJDK17U-jdk_x64_windows_hotspot_17.0.1_12.zip",
+      "install_folder_name": "temurin-17.0.1",
+      "archive_size": 188703137,
+      "unpacked_size": 313878988,
+      "sha256": "e5419773052ac6479ff211d5945f8625e0cdb036e69c0f71affaf02d5dc9aa0b"
+    },
+    {
+      "jdk_info": {
+        "vendor": "IBM",
+        "product": "Semeru",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "8",
+        "jdk_version": "1.8.0_312"
+      },
+      "url": "https://github.com/AdoptOpenJDK/semeru8-binaries/releases/download/jdk8u312-b07_openj9-0.29.0/ibm-semeru-open-jdk_x64_windows_8u312b07_openj9-0.29.0.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "ibm-semeru-open-jdk_x64_windows_8u312b07_openj9-0.29.0.zip",
+      "install_folder_name": "semeru-1.8.0_312",
+      "archive_size": 118317567,
+      "unpacked_size": 225937816,
+      "sha256": "e2e3da06d897561aef1d3f2fe2ab51a88668deac1e35c85df49ed2ed59087674"
+    },
+    {
+      "jdk_info": {
+        "vendor": "IBM",
+        "product": "Semeru",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.13"
+      },
+      "url": "https://github.com/AdoptOpenJDK/semeru11-binaries/releases/download/jdk-11.0.13%2B8_openj9-0.29.0/ibm-semeru-open-jdk_x64_windows_11.0.13_8_openj9-0.29.0.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "ibm-semeru-open-jdk_x64_windows_11.0.13_8_openj9-0.29.0.zip",
+      "install_folder_name": "semeru-11.0.13",
+      "archive_size": 207502765,
+      "unpacked_size": 342174389,
+      "sha256": "600a2aa710854c6dbc6e82bc3a59f6ca702b18b58b95d4681207014c885776c2"
+    },
+    {
+      "jdk_info": {
+        "vendor": "IBM",
+        "product": "Semeru",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "16",
+        "jdk_version": "16.0.2"
+      },
+      "url": "https://github.com/AdoptOpenJDK/semeru16-binaries/releases/download/jdk-16.0.2%2B7_openj9-0.27.0/ibm-semeru-open-jdk_x64_windows_16.0.2_7_openj9-0.27.0.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "ibm-semeru-open-jdk_x64_windows_16.0.2_7_openj9-0.27.0.zip",
+      "install_folder_name": "semeru-16.0.2",
+      "archive_size": 211347393,
+      "unpacked_size": 349122276,
+      "sha256": "84555238a9a00d3ad118bb89c3ee8dff8a4eb1da7df417d98dd43b102db56da7"
+    },
+    {
+      "jdk_info": {
+        "vendor": "IBM",
+        "product": "Semeru",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.1"
+      },
+      "url": "https://github.com/AdoptOpenJDK/semeru17-binaries/releases/download/jdk-17.0.1%2B12_openj9-0.29.1/ibm-semeru-open-jdk_x64_windows_17.0.1_12_openj9-0.29.1.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "ibm-semeru-open-jdk_x64_windows_17.0.1_12_openj9-0.29.1.zip",
+      "install_folder_name": "semeru-17.0.1",
+      "archive_size": 213038411,
+      "unpacked_size": 351373727,
+      "sha256": "27b95cbd856ced51e4279d4180093b2670ea2734ced881ec02fc3244eb161571"
+    },
+    {
+      "jdk_info": {
+        "vendor": "JetBrains",
+        "product": "Runtime",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.13"
+      },
+      "url": "https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk-11_0_13-windows-x64-b1890.3.tar.gz",
+      "package_type": "TARGZ",
+      "archive_file_name": "jbrsdk-11_0_13-windows-x64-b1890.3.tar.gz",
+      "install_folder_name": "jbr-11.0.13",
+      "archive_size": 326195157,
+      "unpacked_size": 696842593,
+      "sha256": "e147f77bc8ad97793fc21c6b73111b50b92f95d6df00fd2ec3f4ca2d34888674"
+    },
+    {
+      "jdk_info": {
+        "vendor": "JetBrains",
+        "product": "Runtime",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.13"
+      },
+      "url": "https://cache-redirector.jetbrains.com/intellij-jbr/jbr_dcevm-11_0_13-windows-x64-b1890.3.tar.gz",
+      "package_type": "TARGZ",
+      "archive_file_name": "jbr_dcevm-11_0_13-windows-x64-b1890.3.tar.gz",
+      "install_folder_name": "jbr-dcevm-11.0.13",
+      "archive_size": 165165993,
+      "unpacked_size": 303273572,
+      "sha256": "50d4c4cf4269237f6f4f3f2af535fdd0a3425f803f9dcfa71c4a30dd6df5e9e5"
+    },
+    {
+      "jdk_info": {
+        "vendor": "JetBrains",
+        "product": "Runtime",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.1"
+      },
+      "url": "https://cache-redirector.jetbrains.com/intellij-jbr/jbrsdk-17_0_1-windows-x64-b164.8.tar.gz",
+      "package_type": "TARGZ",
+      "archive_file_name": "jbrsdk-17_0_1-windows-x64-b164.8.tar.gz",
+      "install_folder_name": "jbr-17.0.1",
+      "archive_size": 146453629,
+      "unpacked_size": 175257713,
+      "sha256": "0ccf1fa64728393f11174af53093f6dd683fade48211258130052efb15e7170b"
+    },
+    {
+      "jdk_info": {
+        "vendor": "JetBrains",
+        "product": "Runtime",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.1"
+      },
+      "url": "https://cache-redirector.jetbrains.com/intellij-jbr/jbr_dcevm-17_0_1-windows-x64-b164.8.tar.gz",
+      "package_type": "TARGZ",
+      "archive_file_name": "jbr_dcevm-17_0_1-windows-x64-b164.8.tar.gz",
+      "install_folder_name": "jbr-dcevm-17.0.1",
+      "archive_size": 160516298,
+      "unpacked_size": 299976359,
+      "sha256": "acd468f308135d300ebf13dff8c2432bda5f099a2c69dd09ee4e780ac863a1e1"
+    },
+    {
+      "jdk_info": {
+        "vendor": "Oracle",
+        "product": "OpenJDK",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.2"
+      },
+      "url": "https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_windows-x64_bin.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "openjdk-17.0.2_windows-x64_bin.zip",
+      "install_folder_name": "openjdk-17.0.2",
+      "archive_size": 186216309,
+      "unpacked_size": 308815237,
+      "sha256": "b2208206bda47f2e0c971a39e057a5ec32c40b503d71e486790cb728d926b615"
+    },
+    {
+      "jdk_info": {
+        "vendor": "SAP",
+        "product": "SapMachine",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "11",
+        "jdk_version": "11.0.14"
+      },
+      "url": "https://github.com/SAP/SapMachine/releases/download/sapmachine-11.0.14/sapmachine-jdk-11.0.14_windows-x64_bin.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "sapmachine-jdk-11.0.14_windows-x64_bin.zip",
+      "install_folder_name": "sapmachine-11.0.14",
+      "archive_size": 198375144,
+      "unpacked_size": 332133189,
+      "sha256": "a9d222bab939c1c6abeab5d57ab118de48abbb64acc1084490db27151b1b3c4c"
+    },
+    {
+      "jdk_info": {
+        "vendor": "SAP",
+        "product": "SapMachine",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "17",
+        "jdk_version": "17.0.2"
+      },
+      "url": "https://github.com/SAP/SapMachine/releases/download/sapmachine-17.0.2/sapmachine-jdk-17.0.2_windows-x64_bin.zip",
+      "package_type": "ZIP",
+      "archive_file_name": "sapmachine-jdk-17.0.2_windows-x64_bin.zip",
+      "install_folder_name": "sapmachine-17.0.2",
+      "archive_size": 196803296,
+      "unpacked_size": 341661536,
+      "sha256": "fdc230b23b5114e52ef7bacaabd6d0a121b4ce70cfdd9f477735dbffbf5b047b"
+    }
+  ]
+}

@@ -1,25 +1,21 @@
 package top.codexvn.node.impl;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import top.codexvn.node.AbstractJdkInfo;
 import top.codexvn.node.AbstractPackage;
-import top.codexvn.node.Resource;
+import top.codexvn.node.Depository;
 import top.codexvn.platform.JetbrainsPlatform;
 import top.codexvn.platform.Platform;
+import top.codexvn.utils.JsonUtil;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class JetbrainsResource implements Resource {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    }
+public class JetbrainsDepository implements Depository {
+    private final ObjectMapper objectMapper = JsonUtil.objectMapper;
 
     private JsonNode getDataFromRemote() {
         JsonNode readTree = null;

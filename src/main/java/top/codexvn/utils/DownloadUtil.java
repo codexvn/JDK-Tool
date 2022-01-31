@@ -1,6 +1,7 @@
 package top.codexvn.utils;
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import me.tongfei.progressbar.ProgressBarBuilder;
 import me.tongfei.progressbar.ProgressBarStyle;
 
@@ -8,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
+@Slf4j
 public class DownloadUtil {
 
     @SneakyThrows
