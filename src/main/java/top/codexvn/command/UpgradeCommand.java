@@ -2,7 +2,6 @@ package top.codexvn.command;
 
 import cn.hutool.core.io.FileUtil;
 import lombok.EqualsAndHashCode;
-import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import top.codexvn.enums.ArchEnum;
 import top.codexvn.enums.OSEnum;
@@ -23,7 +22,6 @@ import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 @Command(name = "upgrade", description = "更新JDK")
-@Slf4j
 public class UpgradeCommand implements Callable<Integer> {
     private Integer code = 0;
 

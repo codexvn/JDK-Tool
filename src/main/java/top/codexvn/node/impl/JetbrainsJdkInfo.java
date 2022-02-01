@@ -39,19 +39,11 @@ public class JetbrainsJdkInfo extends AbstractJdkInfo {
         try {
             this.arch = Enum.valueOf(ArchEnum.class, arch);
         } catch (IllegalArgumentException e) {
-            switch (arch) {
-                case "x86_64":
-                case "X64":
-                    this.arch = ArchEnum.X64;
-                    break;
-                case "aarch64":
-                case "AARCH64":
-                    this.arch = ArchEnum.AARCH64;
-                    break;
-                default:
-                    this.arch = ArchEnum.UNKNOWN;
-                    break;
-            }
+            this.arch = switch (arch) {
+                case "x86_64" -> ArchEnum.X64;
+                case "aarch64" -> ArchEnum.AARCH64;
+                default -> ArchEnum.UNKNOWN;
+            };
         }
     }
 

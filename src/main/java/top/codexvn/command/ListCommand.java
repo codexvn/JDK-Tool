@@ -1,6 +1,5 @@
 package top.codexvn.command;
 
-import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import top.codexvn.node.AbstractPackage;
 import top.codexvn.node.LocalStore;
@@ -13,7 +12,6 @@ import java.util.concurrent.Callable;
 import static top.codexvn.utils.OtherUtil.printJdkInfoList;
 
 @Command(name = "list", description = "列出可用JDK")
-@Slf4j
 public class ListCommand implements Callable<Integer> {
     private Integer code = 0;
 

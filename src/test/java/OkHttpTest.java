@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 import top.codexvn.command.UpgradeCommand;
 
-@Slf4j
 public class OkHttpTest {
 
     static {

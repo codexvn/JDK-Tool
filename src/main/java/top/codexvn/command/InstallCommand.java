@@ -1,6 +1,5 @@
 package top.codexvn.command;
 
-import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import top.codexvn.node.AbstractJdkInfo;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 @Command(name = "install", description = "安装JDK")
-@Slf4j
 public class InstallCommand implements Callable<Integer> {
     private final static String INSTALL_LOCATION = System.getProperty("user.home") + "/.jdk/";
 

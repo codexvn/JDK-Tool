@@ -1,6 +1,5 @@
 package top.codexvn.command;
 
-import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import top.codexvn.node.AbstractPackage;
 import top.codexvn.node.Depository;
@@ -18,7 +17,6 @@ import static top.codexvn.utils.FactoryUtil.getDepository;
 import static top.codexvn.utils.OtherUtil.printJdkInfoList;
 
 @Command(name = "update", description = "更新JDK数据")
-@Slf4j
 public class UpdateCommand implements Callable<Integer> {
     private Integer code = 0;
 
