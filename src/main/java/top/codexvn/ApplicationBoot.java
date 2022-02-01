@@ -12,9 +12,7 @@ import top.codexvn.command.*;
         InstallCommand.class,
         UpgradeCommand.class,
         UpdateCommand.class,
-        InfoCommand.class,
         HelpCommand.class,
-        TestCommand.class
     }
 )
 public class ApplicationBoot {
