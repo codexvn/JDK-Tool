@@ -5,6 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import top.codexvn.node.AbstractJdkInfo;
 import top.codexvn.node.AbstractPackage;
+import top.codexvn.node.LocalJdk;
 import top.codexvn.node.LocalStore;
 import top.codexvn.utils.DownloadUtil;
 import top.codexvn.utils.FactoryUtil;
@@ -34,6 +35,10 @@ public class InstallCommand implements Callable<Integer> {
                 Files.createDirectories(Path.of(INSTALL_LOCATION));
             }
             abstractPackage.unpack(dest, DownloadUtil.getDownloaderProgressBarBuilder());
+            LocalStore localStore = FactoryUtil.getLocalStore();
+            List<LocalJdk> localJdks = localStore.loadLocalJdkList();
+            localJdks.add(new LocalJdk(dest, jdkInfo));
+            localStore.storeLocalJdkList(localJdks);
         } catch (IOException e) {
             e.printStackTrace();
             code = -1;

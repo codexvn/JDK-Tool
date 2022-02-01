@@ -1,5 +1,17 @@
 {
-  "localJdk": [],
+  "localJdk": [
+    {
+      "locate": "file:///C:/Users/codexvn/.jdk/Temurin-8/",
+      "jdkInfo": {
+        "vendor": "Eclipse",
+        "product": "Temurin",
+        "os": "WINDOWS",
+        "arch": "X64",
+        "jdk_version_major": "8",
+        "jdk_version": "1.8.0_11"
+      }
+    }
+  ],
   "jdkList": [
     {
       "jdk_info": {

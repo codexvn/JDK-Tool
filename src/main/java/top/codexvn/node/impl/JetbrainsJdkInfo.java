@@ -36,7 +36,6 @@ public class JetbrainsJdkInfo extends AbstractJdkInfo {
     }
 
     public void setArch(String arch) {
-
         try {
             this.arch = Enum.valueOf(ArchEnum.class, arch);
         } catch (IllegalArgumentException e) {
@@ -54,6 +53,9 @@ public class JetbrainsJdkInfo extends AbstractJdkInfo {
                     break;
             }
         }
+    }
 
+    public void isDcevm() {
+        this.product = String.format("%s-%s", this.product, "dcevm");
     }
 }

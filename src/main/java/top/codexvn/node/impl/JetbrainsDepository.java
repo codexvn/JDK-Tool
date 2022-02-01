@@ -26,6 +26,7 @@ public class JetbrainsDepository implements Depository {
         }
         return Objects.requireNonNull(readTree).get("jdks");
     }
+
     @SneakyThrows
     @Override
     public Map<Platform, List<AbstractPackage>> getJdkListFromRemote() {
@@ -37,6 +38,9 @@ public class JetbrainsDepository implements Depository {
                 jdkInfo.setOs(j.get("os").textValue());
                 jdkInfo.setArch(j.get("arch").textValue());
                 JetbrainsPackage jetbrainsPackage = objectMapper.readValue(j.toString(), JetbrainsPackage.class);
+                if (jetbrainsPackage.getUrl().contains("dcevm")) { //对于dcevm的JDK在产品标识上加上"DCEVM"
+                    jdkInfo.isDcevm();
+                }
                 jetbrainsPackage.setJdkInfo(jdkInfo);
                 Platform platform = new JetbrainsPlatform(j.get("os").textValue(), j.get("arch").textValue());
                 result.merge(platform, new LinkedList<>(List.of(jetbrainsPackage)), (o, n) -> {
@@ -50,6 +54,7 @@ public class JetbrainsDepository implements Depository {
         }
         return result;
     }
+
     @SneakyThrows
     @Override
     public Map<Platform, List<AbstractJdkInfo>> getInfoListFromRemote() {
@@ -60,6 +65,9 @@ public class JetbrainsDepository implements Depository {
             for (var j : i.get("packages")) {
                 jdkInfo.setOs(j.get("os").textValue());
                 jdkInfo.setArch(j.get("arch").textValue());
+                if (j.get("url").textValue().contains("dcevm")) { //对于dcevm的JDK在产品标识上加上"DCEVM"
+                    jdkInfo.isDcevm();
+                }
                 Platform platform = new JetbrainsPlatform(j.get("os").textValue(), j.get("arch").textValue());
                 result.merge(platform, new LinkedList<>(List.of(jdkInfo)), (o, n) -> {
                     o.addAll(n);
