@@ -14,6 +14,7 @@ public class DownloadUtil {
 
     @SneakyThrows
     public static boolean acceptRangeRequest(URL source) {
+        log.info("Checking if server supports range request{}", source.toString());
         HttpURLConnection connection = (HttpURLConnection) source.openConnection();
         connection.setRequestMethod("HEAD");
         connection.connect();

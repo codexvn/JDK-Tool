@@ -1,7 +1,8 @@
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import top.codexvn.command.ListCommand;
+import picocli.CommandLine;
+import top.codexvn.command.InstallCommand;
 
 @Slf4j
 public class OkHttpTest {
@@ -14,7 +15,8 @@ public class OkHttpTest {
     @Test
     @SneakyThrows
     void okHttp() {
-        new ListCommand().call();
+        new CommandLine(new InstallCommand()).execute("-i", "17");
+
 
     }
 

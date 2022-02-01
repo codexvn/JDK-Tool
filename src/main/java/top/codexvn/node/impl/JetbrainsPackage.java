@@ -26,14 +26,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static cn.hutool.extra.compress.CompressUtil.getIn;
 import static top.codexvn.enums.PackageTypeEnum.ZIP;
+import static top.codexvn.utils.OtherUtil.createTempDirectory;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -47,17 +46,23 @@ public class JetbrainsPackage extends AbstractPackage {
     private String sha256;
 
     public void setPackageType(String packageType) {
-        switch (packageType) {
-            case "targz":
-                this.packageType = PackageTypeEnum.TARGZ;
-                break;
-            case "zip":
-                this.packageType = ZIP;
-                break;
-            default:
-                this.packageType = PackageTypeEnum.UNKNOWN;
-                break;
+        try {
+            this.packageType = Enum.valueOf(PackageTypeEnum.class, packageType);
+        } catch (IllegalArgumentException e) {
+            switch (packageType) {
+                case "targz":
+                    this.packageType = PackageTypeEnum.TARGZ;
+                    break;
+                case "zip":
+                    this.packageType = ZIP;
+                    break;
+                default:
+                    this.packageType = PackageTypeEnum.UNKNOWN;
+                    break;
+            }
         }
+
+
     }
 
     @Override
@@ -160,37 +165,73 @@ public class JetbrainsPackage extends AbstractPackage {
         }
     }
 
+    /**
+     * 下载JDK并解压到指定目录
+     *
+     * @param to                 解压到的目录
+     * @param progressBarBuilder 进度条构建器
+     */
     @SneakyThrows
     @Override
     public void unpack(Path to, ProgressBarBuilder progressBarBuilder) {
-        ensureDirExist(to);
-        Path tmpFile = generateTmpDir();
-        download(tmpFile, archiveFileName, progressBarBuilder);
-        checkSHA256(getSha256(), tmpFile.resolve(archiveFileName).toFile());
-        try (InputStream input = Files.newInputStream(tmpFile.resolve(archiveFileName))) {
-            Extractor extractor = null;
-            switch (getPackageType()) {
-                case ZIP:
-                    extractor = CompressUtil.createExtractor(
-                        CharsetUtil.CHARSET_UTF_8,
-                        ArchiveStreamFactory.ZIP
-                        , input
-                    );
-                    break;
-                case TARGZ:
-                    extractor = CompressUtil.createExtractor(
-                        CharsetUtil.CHARSET_UTF_8,
-                        ArchiveStreamFactory.TAR
-                        , getIn(CompressorStreamFactory.GZIP, input)
-                    );
-                    break;
-                case UNKNOWN:
-                    throw new UnknownPackageTypeException();
-            }
-            ensureDirExistAndClearDir(to);
-            Objects.requireNonNull(extractor).extract(to.toFile());
-        } finally {
-            FileUtil.del(tmpFile);
+        Path downloadTempDir = createTempDirectory();
+        download(downloadTempDir, archiveFileName, progressBarBuilder);
+        checkSHA256(getSha256(), downloadTempDir.resolve(archiveFileName).toFile());
+        Path unpackTempDir = unpackToTempDir(downloadTempDir.resolve(archiveFileName).toFile());
+        moveFilesToDst(unpackTempDir, to);
+    }
+
+    /**
+     * 解压到临时目录
+     *
+     * @param src 源文件
+     * @return 解压后的目录
+     */
+    private Path unpackToTempDir(File src) throws IOException {
+        Path tempDirectory = createTempDirectory();
+        try (InputStream input = new FileInputStream(src)) {
+            Extractor extractor = createExtractor(input);
+            extractor.extract(tempDirectory.toFile());
+            return tempDirectory;
+        }
+    }
+
+
+    /**
+     * 根据JDK打包格式创建解压器
+     */
+    private Extractor createExtractor(InputStream input) {
+        switch (getPackageType()) {
+            case ZIP:
+                return CompressUtil.createExtractor(
+                    CharsetUtil.CHARSET_UTF_8,
+                    ArchiveStreamFactory.ZIP
+                    , input
+                );
+            case TARGZ:
+                return CompressUtil.createExtractor(
+                    CharsetUtil.CHARSET_UTF_8,
+                    ArchiveStreamFactory.TAR
+                    , getIn(CompressorStreamFactory.GZIP, input)
+                );
+            default:
+                throw new UnknownPackageTypeException();
+        }
+    }
+
+    /**
+     * 移动解压后的文件到目标目录,如果所需JDK文件在第一层目录中则直接移动目录中所需要的文件到目标目录
+     *
+     * @param src 解压后的文件所在目录
+     * @param dst 目标目录
+     */
+    private void moveFilesToDst(Path src, Path dst) throws IOException {
+        Path[] paths = Files.walk(src, 1).toArray(Path[]::new);
+        ensureDirExistAndClearDir(dst);
+        if (paths.length == 2) {
+            Files.walk(paths[1], 1).skip(1).forEach(i -> FileUtil.copy(i, dst)); //skip(1)是为了去除path流中的根目录
+        } else {
+            Files.walk(src, 1).skip(1).forEach(i -> FileUtil.copy(i, dst));//skip(1)是为了去除path流中的根目录
         }
     }
 
@@ -202,10 +243,6 @@ public class JetbrainsPackage extends AbstractPackage {
         }
     }
 
-    private static Path generateTmpDir() {
-        String tmpdir = System.getProperty("java.io.tmpdir");
-        return Path.of(Objects.requireNonNull(tmpdir), UUID.randomUUID().toString().replace("-", ""));
-    }
 
     private static void ensureDirExist(Path dir) {
         try {
